@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.mypokedex.ui.detail.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPokemonDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#6EB5B1"
+        tools:context=".ui.detail.DetailFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_round_keyboard_backspace_36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onBackPressed="@{true}" />
+
+        <TextView
+            android:id="@+id/tvPokemonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.pokemonDetail.pokemonName}"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/ivBackButton"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackButton"
+            tools:text="Venusaur" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/lnPokemonType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvPokemonName"
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonName"
+            app:setType="@{vm.pokemonDetail.pokemonTypes}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPokemonIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.pokemonDetail.getPokemonIndex()}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/lnPokemonType"
+            app:layout_constraintTop_toTopOf="@+id/ivBackButton"
+            tools:text="#003" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/lnAbout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/linear_layout_round"
+            android:elevation="8dp"
+            android:orientation="vertical"
+            android:padding="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnPokemonType">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/AppCompatTextView.PokemonDetail.ParentBody"
+                android:text="@string/about" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/height" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.About"
+                    android:text="@{vm.pokemonDetail.pokemonHeight+`m`}"
+                    tools:text="1 m" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/weight" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.About"
+                    android:text="@{vm.pokemonDetail.pokemonWeight+`Kg`}"
+                    tools:text="1 Kg" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/abilities" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.About"
+                    android:text="@{vm.pokemonDetail.pokemonAbilities}"
+                    tools:text="overgrow, chlorophyll" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/base_exp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.About"
+                    android:text="@{``+vm.pokemonDetail.pokemonBaseExperience}"
+                    tools:text="20" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/AppCompatTextView.PokemonDetail.ParentBody"
+                android:layout_marginTop="16dp"
+                android:text="@string/base_stats" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/hp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.BaseStats"
+                    android:text="@{``+vm.pokemonDetail.pokemonHp}"
+                    tools:text="100" />
+
+                <ProgressBar
+                    style="@style/ProgressBar.PokemonDetail.Content.BaseStats"
+                    android:progress="@{vm.pokemonDetail.pokemonHp}"
+                    tools:progress="65" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/attack" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.BaseStats"
+                    android:text="@{``+vm.pokemonDetail.pokemonAttack}"
+                    tools:text="100" />
+
+                <ProgressBar
+                    style="@style/ProgressBar.PokemonDetail.Content.BaseStats"
+                    android:progress="@{vm.pokemonDetail.pokemonAttack}"
+                    tools:progress="65" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/defence" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.BaseStats"
+                    android:text="@{``+vm.pokemonDetail.pokemonDefense}"
+                    tools:text="100" />
+
+                <ProgressBar
+                    style="@style/ProgressBar.PokemonDetail.Content.BaseStats"
+                    android:progress="@{vm.pokemonDetail.pokemonDefense}"
+                    tools:progress="65" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/special_attack" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.BaseStats"
+                    android:text='@{``+vm.pokemonDetail.pokemonSpecialAttack}'
+                    tools:text="100" />
+
+                <ProgressBar
+                    style="@style/ProgressBar.PokemonDetail.Content.BaseStats"
+                    android:progress="@{vm.pokemonDetail.pokemonSpecialAttack}"
+                    tools:progress="65" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/special_defence" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.BaseStats"
+                    android:text="@{``+vm.pokemonDetail.pokemonSpecialDefense}"
+                    tools:text="100" />
+
+                <ProgressBar
+                    style="@style/ProgressBar.PokemonDetail.Content.BaseStats"
+                    android:progress="@{vm.pokemonDetail.pokemonSpecialDefense}"
+                    tools:progress="65" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/LinearLayout.PokemonDetail.ParentBody">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.ChildBody"
+                    android:text="@string/speed" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/AppCompatTextView.PokemonDetail.Content.BaseStats"
+                    android:text="@{``+vm.pokemonDetail.pokemonSpeed}"
+                    tools:text="100" />
+
+                <ProgressBar
+                    style="@style/ProgressBar.PokemonDetail.Content.BaseStats"
+                    android:progress="@{vm.pokemonDetail.pokemonHp}"
+                    tools:progress="65" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPokemonImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:elevation="10dp"
+            android:outlineProvider="none"
+            android:scaleType="centerInside"
+            app:imageUrl="@{vm.pokemonDetail.getImageUrl()}"
+            app:layout_constraintEnd_toEndOf="@+id/tvPokemonIndex"
+            app:layout_constraintStart_toStartOf="@+id/tvPokemonName"
+            app:layout_constraintTop_toBottomOf="@+id/lnPokemonType"
+            app:paletteView="@{clPokemonDetail}"
+            tools:src="@drawable/ic_venusaur" />
+
+        <ProgressBar
+            android:id="@+id/pgPokemonDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:outlineProvider="none"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:elevation="10dp"
+            android:focusable="true"
+            android:onClick="@{() -> vm.setFavorite()}"
+            android:outlineProvider="none"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPokemonName"
+            app:layout_constraintEnd_toEndOf="@+id/tvPokemonIndex"
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonIndex"
+            app:setFavorite="@{vm.isFavoritePokemon}"
+            tools:src="@drawable/ic_round_favorite_border_36" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
